@@ -1,0 +1,78 @@
+<div class="flex flex-col p-2 lg:w-80 max-md:w-[280px]">
+  <h1 class="font-bold text-3xl">Hello!</h1>
+  <h1 class="text-md text-slate-600 font-semibold mt-2">
+    Sign Up to Get Started
+  </h1>
+
+  <!-- Error Section -->
+  <div
+    class="border-2 border-red-500 rounded-lg p-2 text-sm mt-4"
+    *ngIf="isFormError"
+  >
+    <h1 class="font-semibold text-md text-red-500">Error:</h1>
+    <ul class="text-red-500 text-[12px]">
+      <li>Email Sudah Digunakan</li>
+      <li>Username Sudah Digunakan</li>
+    </ul>
+  </div>
+
+  <form>
+    <div class="flex flex-col mb-2 mt-4">
+      <label class="font-semibold text-sm mb-2">Full Name</label>
+      <input
+        type="text"
+        placeholder="Masukkan Nama Lengkap"
+        class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
+        autofocus
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="flex flex-col mb-2">
+      <label class="font-semibold text-sm mb-2">Username</label>
+      <input
+        type="text"
+        placeholder="Masukkan Username"
+        class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="flex flex-col mb-2">
+      <label class="font-semibold text-sm mb-2">Email</label>
+      <input
+        type="email"
+        placeholder="Masukkan Email"
+        class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="flex flex-col mb-4">
+      <label class="font-semibold text-sm mb-2">Password</label>
+      <input
+        type="password"
+        placeholder="* * * * * * * *"
+        class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
+        autocomplete="off"
+      />
+    </div>
+
+    <button
+      type="button"
+      class="rounded-lg bg-blue-500 font-semibold text-white p-2 hover:bg-blue-900 w-full"
+    >
+      Register
+    </button>
+  </form>
+
+  <h1 class="text-sm text-slate-500 mt-4">
+    Already Have An Account?
+    <a
+      [routerLink]="loginUrl"
+      class="font-semibold text-blue-500 hover:cursor-pointer hover:text-blue-900"
+    >
+      Login
+    </a>
+  </h1>
+</div>
