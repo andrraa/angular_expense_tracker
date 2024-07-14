@@ -1,0 +1,133 @@
+<section class="w-full min-h-screen bg-slate-100">
+  <div class="container bg-white min-h-screen p-8">
+    <div class="flex flex-row justify-between items-center">
+      <div class="flex flex-col mb-4">
+        <h1 class="font-bold text-[30px]">Expense Tracker</h1>
+        <h1 class="text-slate-400 font-semibold text-sm">
+          Saving your money by tracking your expense for good!
+        </h1>
+      </div>
+
+      <button
+        type="button"
+        [routerLink]="loginRoutePath"
+        class="justify-center items-center select-none bg-red-500 text-white font-semibold rounded-lg p-3 gap-2 hover:scale-105 transition duration-300 text-sm text-center inline-flex"
+      >
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+      </button>
+    </div>
+
+    <!-- Divider -->
+    <hr class="bg-slate-100 h-1" />
+
+    <div class="flex flex-row gap-2 mt-4 mb-4">
+      <button
+        class="p-2 text-[13px] font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-900 hover:scale-105 transition duration-300"
+      >
+        <i class="fa-solid fa-plus"></i>
+        Add Category
+      </button>
+      <button
+        class="p-2 text-[13px] font-semibold text-white bg-red-500 rounded-lg hover:bg-red-900 hover:scale-105 transition duration-300"
+      >
+        <i class="fa-solid fa-plus"></i>
+        Add Expense
+      </button>
+    </div>
+
+    <!-- Category Data -->
+    <div class="flex flex-col">
+      <div class="relative overflow-x-auto shadow-md">
+        <table class="w-full text-sm text-left">
+          <thead class="text-xs uppercase bg-gray-100">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-center">No.</th>
+              <th scope="col" class="px-6 py-3">Category Name</th>
+              <th scope="col" class="px-6 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-6 py-4 w-[5%] text-center">1</td>
+              <td class="px-6 py-4">Makanan</td>
+              <td class="px-6 py-4 w-[20%]">
+                <div class="flex flex-row gap-2">
+                  <button
+                    class="bg-blue-500 p-2 w-[40px] h-[40px] hover:scale-105 transition duration-300 hover:bg-blue-900 font-semibold text-white rounded-lg"
+                  >
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                  <button
+                    class="bg-red-500 p-2 w-[40px] h-[40px] hover:scale-105 transition duration-300 hover:bg-red-900 font-semibold text-white rounded-lg"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pagination-controls
+        class="float-end p-2 font-semibold text-sm"
+        id="some_id"
+        previousLabel="Previous"
+        nextLabel="Next"
+        [responsive]="true"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page"
+      >
+      </pagination-controls>
+    </div>
+
+    <!-- Expense Data -->
+    <div class="flex flex-col">
+      <div class="relative overflow-x-auto shadow-md">
+        <table class="w-full text-sm text-left">
+          <thead class="text-xs uppercase bg-gray-100">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-center">No.</th>
+              <th scope="col" class="px-6 py-3">Expense Name</th>
+              <th scope="col" class="px-6 py-3">Expense Category</th>
+              <th scope="col" class="px-6 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-6 py-4 w-[5%] text-center">1</td>
+              <td class="px-6 py-4">Makanan</td>
+              <td class="px-6 py-4">Makanan</td>
+              <td class="px-6 py-4 w-[20%]">
+                <div class="flex flex-row gap-2">
+                  <button
+                    class="bg-blue-500 p-2 w-[40px] h-[40px] hover:scale-105 transition duration-300 hover:bg-blue-900 font-semibold text-white rounded-lg"
+                  >
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                  <button
+                    class="bg-red-500 p-2 w-[40px] h-[40px] hover:scale-105 transition duration-300 hover:bg-red-900 font-semibold text-white rounded-lg"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pagination-controls
+        class="float-end p-2 font-semibold text-sm"
+        id="some_id"
+        previousLabel="Previous"
+        nextLabel="Next"
+        [responsive]="true"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+</section>
