@@ -2,19 +2,7 @@
   <h1 class="font-bold text-3xl">Hello Again!</h1>
   <h1 class="text-md text-slate-600 font-semibold mt-2">Welcome Back</h1>
 
-  <!-- Error Section -->
-  <div
-    class="border-2 border-red-500 rounded-lg p-2 text-sm mt-4"
-    *ngIf="isFormError"
-  >
-    <h1 class="font-semibold text-md text-red-500">Error:</h1>
-    <ul class="text-red-500 text-[12px]">
-      <li>Email Sudah Digunakan</li>
-      <li>Username Sudah Digunakan</li>
-    </ul>
-  </div>
-
-  <form>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="flex flex-col mb-2 mt-4">
       <label class="font-semibold text-sm mb-2">Email / Username</label>
       <input
@@ -23,6 +11,7 @@
         class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
         autofocus
         autocomplete="off"
+        formControlName="username"
       />
     </div>
 
@@ -33,21 +22,22 @@
         placeholder="* * * * * * * *"
         class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
         autocomplete="off"
+        formControlName="password"
       />
     </div>
 
-    <button
-      type="button"
-      class="rounded-lg bg-blue-500 font-semibold text-white p-2 hover:bg-blue-900 w-full"
-    >
-      Login
-    </button>
+    <app-button
+      title="Login"
+      [isDisabled]="!loginForm.valid"
+      [isLoading]="isLoding"
+      customClass="rounded-lg bg-blue-500 font-semibold text-white p-2 hover:bg-blue-900 w-full"
+    ></app-button>
   </form>
 
   <h1 class="text-sm text-slate-500 mt-4">
     Don't Have An Account?
     <a
-      [routerLink]="registerUrl"
+      [routerLink]="registerComponentPath"
       class="font-semibold text-blue-500 hover:cursor-pointer hover:text-blue-900"
     >
       Register
