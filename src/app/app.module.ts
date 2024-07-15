@@ -15,9 +15,23 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormExpenseComponent } from './shared/components/form-expense/form-expense.component';
 import { FormExpenseTypeComponent } from './shared/components/form-expense-type/form-expense-type.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, FormExpenseComponent, FormExpenseTypeComponent],
-  imports: [BrowserModule, AppRoutingModule, AuthModule, NgxPaginationModule],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    FormExpenseComponent,
+    FormExpenseTypeComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AuthModule,
+    FormsModule,
+    NgxPaginationModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     provideClientHydration(),
     provideHttpClient(withInterceptors([httpInterceptor])),
