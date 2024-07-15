@@ -1,33 +1,64 @@
 <div class="p-2 flex flex-row gap-2 mt-4">
   <div class="w-1/2">
-    <form>
+    <form [formGroup]="expenseForm" (ngSubmit)="create()">
       <div class="flex flex-col mb-2">
         <label class="font-semibold text-sm mb-2">Expense Type</label>
-        <input
-          class="rounded-lg p-2 focus:outline-purple-700 font-semibold text-sm shadow-md"
-        />
+        <ng-select
+          [virtualScroll]="true"
+          [items]="expenseTypeData"
+          bindLabel="name"
+          bindValue="id"
+          (open)="expenseTypes()"
+          [loading]="isLoadingExpenseTypes"
+          [searchable]="false"
+          class="rounded-lg p-0.5 bg-white focus:outline-purple-700 font-semibold text-sm shadow-md hover:cursor-pointer"
+          formControlName="type_id"
+        >
+          <ng-option *ngFor="let item of expenseTypeData" [value]="item.id">
+            {{ item.name }}
+          </ng-option>
+        </ng-select>
       </div>
+
       <div class="flex flex-col mb-2">
         <label class="font-semibold text-sm mb-2">Expense Category</label>
-        <input
-          class="rounded-lg p-2 focus:outline-purple-700 font-semibold text-sm shadow-md"
-        />
+        <ng-select
+          [virtualScroll]="true"
+          [items]="categoryData"
+          bindLabel="name"
+          bindValue="id"
+          (open)="categories()"
+          [loading]="isLoadingCategories"
+          [searchable]="false"
+          class="rounded-lg p-0.5 bg-white focus:outline-purple-700 font-semibold text-sm shadow-md hover:cursor-pointer"
+          formControlName="category_id"
+        >
+          <ng-option *ngFor="let item of categoryData" [value]="item.id">
+            {{ item.name }}
+          </ng-option>
+        </ng-select>
       </div>
+
       <div class="flex flex-col mb-2">
         <label class="font-semibold text-sm mb-2">Expense Name</label>
         <input
           class="rounded-lg p-2 focus:outline-purple-700 font-semibold text-sm shadow-md"
+          formControlName="name"
         />
       </div>
+
       <div class="flex flex-col mb-2">
         <label class="font-semibold text-sm mb-2">Expense Amount</label>
         <input
           class="rounded-lg p-2 focus:outline-purple-700 font-semibold text-sm shadow-md"
+          formControlName="amount"
         />
       </div>
 
       <app-button
         title="Add Expense"
+        [isLoading]="isCreatingExpense"
+        [isDisabled]="!expenseForm.valid"
         customClass="text-sm font-semibold bg-purple-700 p-2 rounded-lg text-white mt-2 hover:bg-purple-900"
       >
       </app-button>

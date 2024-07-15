@@ -1,42 +1,38 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environments } from '../../../../environments/environment.dev';
-import { catchError, firstValueFrom, map, throwError } from 'rxjs';
-import {
-  CreateCategoryRequest,
-  CreateCategorySuccess,
-} from '../../models/expense-type/expense-type.model';
-import { SuccessResponse } from '../../../core/model/success.model';
 import {
   ErrorResponse,
   MessageResponse,
 } from '../../../core/model/failed.model';
+import { SuccessResponse } from '../../../core/model/success.model';
+import {
+  CreateExpenseRequest,
+  ExpenseSuccess,
+  ExpenseTypeSuccess,
+} from '../../models/expense/expense.model';
+import { catchError, first, firstValueFrom, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ExpenseCategoryService {
+export class ExpenseService {
   private readonly API_BASE_URL: string = Environments.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 
   // Create
   async create(
-    request: CreateCategoryRequest
-  ): Promise<
-    SuccessResponse<CreateCategorySuccess> | ErrorResponse<MessageResponse>
-  > {
-    const createCategoryUrl = this.API_BASE_URL + '/categories/create';
+    request: CreateExpenseRequest
+  ): Promise<SuccessResponse<ExpenseSuccess> | ErrorResponse<MessageResponse>> {
+    const createExpenseUrl: string = this.API_BASE_URL + '/expenses/create';
 
     try {
-      const response = await firstValueFrom(
+      const resposne = await firstValueFrom(
         this.http
-          .post<SuccessResponse<CreateCategorySuccess>>(
-            createCategoryUrl,
-            request
-          )
+          .post<SuccessResponse<ExpenseSuccess>>(createExpenseUrl, request)
           .pipe(
-            map((response: SuccessResponse<CreateCategorySuccess>) => {
+            map((response: SuccessResponse<ExpenseSuccess>) => {
               return response;
             }),
             catchError((error: HttpErrorResponse) => {
@@ -51,24 +47,24 @@ export class ExpenseCategoryService {
           )
       );
 
-      return response;
+      return resposne;
     } catch (error) {
       return error as ErrorResponse<MessageResponse>;
     }
   }
 
-  // Categories
-  async categories(): Promise<
-    SuccessResponse<CreateCategorySuccess[]> | ErrorResponse<MessageResponse>
+  // Get expense types
+  async expenseTypes(): Promise<
+    SuccessResponse<ExpenseTypeSuccess[]> | ErrorResponse<MessageResponse>
   > {
-    const categoriesUrl = this.API_BASE_URL + '/categories';
+    const expenseTypeUrl: string = this.API_BASE_URL + '/expenses/types';
 
     try {
       const response = await firstValueFrom(
         this.http
-          .get<SuccessResponse<CreateCategorySuccess[]>>(categoriesUrl)
+          .get<SuccessResponse<ExpenseTypeSuccess[]>>(expenseTypeUrl)
           .pipe(
-            map((response: SuccessResponse<CreateCategorySuccess[]>) => {
+            map((response: SuccessResponse<ExpenseTypeSuccess[]>) => {
               return response;
             }),
             catchError((error: HttpErrorResponse) => {

@@ -15,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormExpenseComponent } from './shared/components/form-expense/form-expense.component';
 import { FormExpenseTypeComponent } from './shared/components/form-expense-type/form-expense-type.component';
 
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AuthModule,
     FormsModule,
     NgxPaginationModule,
+    NgSelectModule,
     ReactiveFormsModule,
   ],
   providers: [

@@ -1,0 +1,7 @@
+.ng-select .ng-select-container{
+    border: none;
+}
+
+.ng-select .ng-select-container:hover {
+    cursor: pointer;
+}
