@@ -6,6 +6,11 @@ import { StorageService } from '../shared/services/storage/storage.service';
 import { ErrorResponse, MessageResponse } from '../core/model/failed.model';
 import { SuccessResponse } from '../core/model/success.model';
 import { UserSuccess } from '../auth/model/auth.model';
+import { ExpenseService } from '../shared/services/expense/expense.service';
+import {
+  ExpenseSuccess,
+  ExpenseTotal,
+} from '../shared/models/expense/expense.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,10 +24,13 @@ export class DashboardComponent {
   constructor(
     private alert: AlertService,
     private authService: AuthService,
+    private expenseService: ExpenseService,
     private router: Router,
     private storage: StorageService
   ) {
     this.profile();
+    this.expenses();
+    this.totalExpense();
   }
 
   // Loading
@@ -62,6 +70,112 @@ export class DashboardComponent {
         icon: 'error',
         title: errorResponse.errors.message,
       });
+    }
+  }
+
+  // Expenses
+  expensesData: ExpenseSuccess[] = [];
+
+  isLoadingExpenses: boolean = false;
+
+  public async expenses() {
+    try {
+      const result:
+        | SuccessResponse<ExpenseSuccess[]>
+        | ErrorResponse<MessageResponse> = await this.expenseService.expenses();
+
+      if ('data' in result) {
+        this.expensesData = result.data;
+      }
+
+      if ('errors' in result) {
+        const errorResponse = result as ErrorResponse<MessageResponse>;
+
+        this.alert.showToast({
+          icon: 'error',
+          title: errorResponse.errors.message,
+        });
+      }
+
+      this.isLoadingExpenses = false;
+    } catch (error) {
+      const errorResponse = error as ErrorResponse<MessageResponse>;
+
+      this.alert.showToast({
+        icon: 'error',
+        title: errorResponse.errors.message,
+      });
+
+      this.isLoadingExpenses = false;
+    }
+  }
+
+  // Expense Total
+  expenseTotalData: ExpenseTotal = {
+    total_income: '',
+    total_outcome: '',
+  };
+
+  isLoadingTotalExpense: boolean = false;
+
+  public async totalExpense() {
+    try {
+      const result:
+        | SuccessResponse<ExpenseTotal>
+        | ErrorResponse<MessageResponse> =
+        await this.expenseService.totalExpense();
+
+      if ('data' in result) {
+        this.expenseTotalData = result.data;
+        console.log(this.expenseTotalData);
+      }
+
+      if ('errors' in result) {
+        const errorResponse = result as ErrorResponse<MessageResponse>;
+
+        this.alert.showToast({
+          icon: 'error',
+          title: errorResponse.errors.message,
+        });
+      }
+
+      this.isLoadingTotalExpense = false;
+    } catch (error) {
+      const errorResponse = error as ErrorResponse<MessageResponse>;
+
+      this.alert.showToast({
+        icon: 'error',
+        title: errorResponse.errors.message,
+      });
+
+      this.isLoadingTotalExpense = false;
+    }
+  }
+
+  // Delete Expense
+  isDeletingExpense: boolean = false;
+
+  public async delete(id: number) {
+    this.isDeletingExpense = true;
+
+    try {
+      const result = await this.expenseService.delete(id);
+
+      if (result) {
+        this.expenses();
+        this.totalExpense();
+      }
+
+      this.isDeletingExpense = false;
+    } catch (error) {
+      const errorResponse = error as ErrorResponse<MessageResponse>;
+
+      this.alert.showToast({
+        icon: 'error',
+        title: errorResponse.errors.message,
+      });
+
+      this.isDeletingExpense = false;
     }
   }
 

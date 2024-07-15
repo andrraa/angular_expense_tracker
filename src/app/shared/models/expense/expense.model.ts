@@ -21,3 +21,8 @@ export interface ExpenseTypeSuccess {
   created_at: string;
   updated_at: string;
 }
+
+export interface ExpenseTotal {
+  total_income: string;
+  total_outcome: string;
+}
