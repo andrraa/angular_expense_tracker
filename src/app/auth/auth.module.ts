@@ -17,5 +17,6 @@ import { MasterAuthComponent } from './master-auth/master-auth.component';
     MasterAuthComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, FormsModule, ReactiveFormsModule],
+  exports: [ButtonComponent],
 })
 export class AuthModule {}

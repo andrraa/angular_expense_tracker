@@ -25,7 +25,22 @@ export class DashboardComponent {
     this.profile();
   }
 
+  // Loading
+  isLoadingCategory: boolean = false;
+  isLoadingExpense: boolean = false;
+
+  // Expense / Expense Type
+  isShowingExpense: boolean = false;
+
+  toggleExpense(): void {
+    this.isShowingExpense = !this.isShowingExpense;
+  }
+
   // Profile
+  userFullName: string = '';
+  userUsername: string = '';
+  userEmail: string = '';
+
   public async profile() {
     try {
       const result:
@@ -34,8 +49,11 @@ export class DashboardComponent {
 
       if ('data' in result) {
         const userData = result as SuccessResponse<UserSuccess>;
+        console.log(userData);
 
-        console.log(userData.data);
+        this.userFullName = userData.data.full_name;
+        this.userUsername = userData.data.username;
+        this.userEmail = userData.data.email;
       }
     } catch (error) {
       const errorResponse = error as ErrorResponse<MessageResponse>;
