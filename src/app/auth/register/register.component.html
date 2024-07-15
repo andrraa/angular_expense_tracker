@@ -22,7 +22,7 @@
       <input
         type="text"
         placeholder="Masukkan Nama Lengkap"
-        class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
+        class="p-2 border rounded-lg focus:outline-purple-700 text-sm shadow-sm"
         autofocus
         autocomplete="off"
         formControlName="full_name"
@@ -34,7 +34,7 @@
       <input
         type="text"
         placeholder="Masukkan Username"
-        class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
+        class="p-2 border rounded-lg focus:outline-purple-700 text-sm shadow-sm"
         autocomplete="off"
         formControlName="username"
       />
@@ -45,7 +45,7 @@
       <input
         type="email"
         placeholder="Masukkan Email"
-        class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
+        class="p-2 border rounded-lg focus:outline-purple-700 text-sm shadow-sm"
         autocomplete="off"
         formControlName="email"
       />
@@ -56,7 +56,7 @@
       <input
         type="password"
         placeholder="* * * * * * * *"
-        class="p-2 border rounded-lg focus:outline-blue-700 text-sm shadow-sm"
+        class="p-2 border rounded-lg focus:outline-purple-700 text-sm shadow-sm"
         autocomplete="off"
         formControlName="password"
       />
@@ -65,7 +65,7 @@
     <app-button
       title="Register"
       [isDisabled]="!registerForm.valid"
-      customClass="rounded-lg bg-blue-500 font-semibold text-white p-2 hover:bg-blue-900 w-full"
+      customClass="rounded-lg bg-purple-500 font-semibold text-white p-2 hover:bg-purple-900 w-full"
       [isLoading]="isRegistering"
     ></app-button>
   </form>
@@ -74,7 +74,7 @@
     Already Have An Account?
     <a
       [routerLink]="loginComponentPath"
-      class="font-semibold text-blue-500 hover:cursor-pointer hover:text-blue-900"
+      class="font-semibold text-purple-500 hover:cursor-pointer hover:text-purple-900"
     >
       Login
     </a>
