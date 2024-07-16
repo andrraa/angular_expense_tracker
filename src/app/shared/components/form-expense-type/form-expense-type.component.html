@@ -1,5 +1,5 @@
 <div class="p-2 flex flex-row gap-2 mt-4">
-  <div class="w-1/2">
+  <div class="w-1/2 max-md:w-full">
     <form [formGroup]="ExpenseCategoryForm" (ngSubmit)="create()">
       <div class="flex flex-col mb-2">
         <label class="font-semibold text-sm mb-2">Expense Category Name</label>
@@ -17,7 +17,7 @@
       </app-button>
     </form>
   </div>
-  <div class="w-1/2 flex justify-center items-center">
+  <div class="w-1/2 flex justify-center items-center max-md:hidden">
     <img
       src="/assets/expense-type.png"
       width="350"
