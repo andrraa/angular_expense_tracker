@@ -48,8 +48,11 @@ export class DashboardComponent {
   userFullName: string = '';
   userUsername: string = '';
   userEmail: string = '';
+  isLoadingProfile: boolean = false;
 
   public async profile() {
+    this.isLoadingProfile = true;
+
     try {
       const result:
         | SuccessResponse<UserSuccess>
@@ -63,6 +66,8 @@ export class DashboardComponent {
         this.userUsername = userData.data.username;
         this.userEmail = userData.data.email;
       }
+
+      this.isLoadingProfile = false;
     } catch (error) {
       const errorResponse = error as ErrorResponse<MessageResponse>;
 
@@ -70,6 +75,8 @@ export class DashboardComponent {
         icon: 'error',
         title: errorResponse.errors.message,
       });
+
+      this.isLoadingProfile = false;
     }
   }
 
@@ -119,6 +126,8 @@ export class DashboardComponent {
   isLoadingTotalExpense: boolean = false;
 
   public async totalExpense() {
+    this.isLoadingTotalExpense = true;
+
     try {
       const result:
         | SuccessResponse<ExpenseTotal>
